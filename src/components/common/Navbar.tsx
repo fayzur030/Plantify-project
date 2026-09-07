@@ -1,5 +1,8 @@
 import { Heart, ShoppingCart, User } from 'lucide-react'
 import logo from '../../assets/plantfyLogo-removebg-preview.png'
+import type { Plants } from '../../types/Plants'
+import { useState, type Dispatch, type SetStateAction } from 'react'
+import PlantCartModal from '../cart/PlantCartModal'
 const navItems = [
   { name: 'Home', href: '/' },
   { name: 'Plants', href: '/plants' },
@@ -7,11 +10,17 @@ const navItems = [
   { name: 'About', href: '/about' },
 ]
 
-const Navbar = () => {
-  const cartItems = 2
+interface ICartProps {
+  cart: Plants[]
+  setCart: Dispatch<SetStateAction<Plants[]>>
+}
+
+const Navbar = ({ cart, setCart }: ICartProps) => {
+  // console.log(cart)
+  const [isOpen, setIsOpen] = useState<boolean>(false)
 
   return (
-    <nav className='border-b border-gray-100 bg-white'>
+    <nav className='border-b border-gray-100 bg-white sticky top-0 z-50'>
       <div className='mx-auto flex max-w-7xl items-center justify-between px-5 py-4'>
         {/* Logo + Nav Items */}
         <div className='flex items-center gap-8'>
@@ -51,13 +60,14 @@ const Navbar = () => {
           <button
             type='button'
             aria-label='Shopping cart'
-            className='relative text-[#0F5132] transition hover:text-[#22C55E]'
+            className='relative text-[#0F5132] transition hover:text-[#22C55E] cursor-pointer'
+            onClick={() => setIsOpen(!isOpen)}
           >
             <ShoppingCart size={23} strokeWidth={1.8} />
 
-            {cartItems > 0 && (
+            {cart.length > 0 && (
               <span className='cursor-pointer absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-[#22C55E] text-[10px] font-semibold text-white'>
-                {cartItems}
+                {cart.length}
               </span>
             )}
           </button>
@@ -71,6 +81,9 @@ const Navbar = () => {
             <User size={19} />
           </button>
         </div>
+        {isOpen && (
+          <PlantCartModal setIsOpen={setIsOpen} cart={cart} setCart={setCart} />
+        )}
       </div>
     </nav>
   )

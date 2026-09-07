@@ -4,9 +4,10 @@ import SecondaryBtn from '../../ui/SecondaryBtn'
 
 interface IPlant {
   plant: Plants
+  handleAddCart: (plant: Plants) => void
 }
 
-const PlantCard = ({ plant }: IPlant) => {
+const PlantCard = ({ plant, handleAddCart }: IPlant) => {
   return (
     <div className='group overflow-hidden rounded-2xl border border-gray-200 bg-base-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl'>
       {/* Image */}
@@ -35,7 +36,7 @@ const PlantCard = ({ plant }: IPlant) => {
 
         {/* Buttons */}
         <div className='mt-5 flex gap-3'>
-          <PrimaryBtn>Add cart</PrimaryBtn>
+          <PrimaryBtn onClick={() => handleAddCart(plant)}>Add cart</PrimaryBtn>
           <SecondaryBtn>Buy Now</SecondaryBtn>
         </div>
       </div>
