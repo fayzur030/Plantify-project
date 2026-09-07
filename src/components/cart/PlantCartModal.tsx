@@ -1,6 +1,7 @@
 import type { Dispatch, SetStateAction } from 'react'
 import type { Plants } from '../../types/Plants'
 import { Trash } from 'lucide-react'
+import { toast } from 'react-toastify'
 
 interface IModalProps {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
@@ -8,13 +9,23 @@ interface IModalProps {
   setCart: Dispatch<SetStateAction<Plants[]>>
 }
 
-// interface IRemoveProps {
 
-// }
 
 const PlantCartModal = ({ setIsOpen, cart, setCart }: IModalProps) => {
   const handleRemove = (id: number) => {
+    const plant = cart.find((plant) => plant.id === id)
     setCart((prev) => prev.filter((plant) => plant.id !== id))
+    toast.success(`${plant?.name} delete successfully!`, {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+      // transition: Bounce,
+    })
   }
   return (
     <div className='fixed inset-0 z-100 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm'>
@@ -69,7 +80,7 @@ const PlantCartModal = ({ setIsOpen, cart, setCart }: IModalProps) => {
                       </p>
                     </div>
                     <button
-                      className='shrink-0 cursor-pointer text-gray-400 transition hover:text-red-500 cursor-pointer'
+                      className='shrink-0  text-red-500 transition hover:text-red-700 cursor-pointer'
                       onClick={() => handleRemove(p.id)}
                     >
                       <Trash className='h-6 w-6' />
