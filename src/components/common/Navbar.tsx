@@ -1,5 +1,5 @@
-import { Heart, Leaf, ShoppingCart, User } from 'lucide-react'
-import logo from '../assets/plantfyLogo-removebg-preview.png'
+import { Heart, ShoppingCart, User } from 'lucide-react'
+import logo from '../../assets/plantfyLogo-removebg-preview.png'
 const navItems = [
   { name: 'Home', href: '/' },
   { name: 'Plants', href: '/plants' },

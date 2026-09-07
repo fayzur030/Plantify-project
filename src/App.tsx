@@ -1,6 +1,7 @@
 import './App.css'
-import Navbar from './common/Navbar'
+import Navbar from './components/common/Navbar'
 import Banner from './components/home/Banner'
+import PlantList from './components/plant/PlantList'
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       </div>
       <main>
         <Banner />
+        <PlantList />
       </main>
     </>
   )

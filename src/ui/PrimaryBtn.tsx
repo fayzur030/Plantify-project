@@ -8,7 +8,7 @@ const PrimaryBtn = ({ children, onClick, className }: ButtonProps) => {
   return (
     <button
       type='button'
-      className={`w-full rounded-xl bg-green-600 px-4 py-2.5 text-sm font-medium text-white transition-all duration-300 hover:bg-green-700 hover:shadow-lg active:scale-[0.98] cursor-pointer ${className}`}
+      className='flex-1 rounded-lg border border-green-600 px-4 py-2.5 text-sm font-semibold text-green-600 transition cursor-pointer hover:bg-green-50 '
       onClick={onClick}
     >
       {children}
