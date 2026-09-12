@@ -1,7 +1,6 @@
 @import 'tailwindcss';
 
 @plugin "daisyui" {
-  themes: light;
 }
 .banner {
   background: url('./assets/plantfy_banner.png');

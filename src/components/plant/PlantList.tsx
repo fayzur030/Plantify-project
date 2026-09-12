@@ -4,7 +4,8 @@ import PlantCard from './PlantCard'
 import Loading from '../common/Loading'
 import type { Plants } from '../../types/Plants'
 import type { Dispatch, SetStateAction } from 'react'
-import { toast } from 'react-toastify'
+
+import { showSuccessToast } from '../../utils/ShowToast'
 interface ICartProps {
   cart: Plants[]
   setCart: Dispatch<SetStateAction<Plants[]>>
@@ -15,17 +16,7 @@ const PlantList = ({ cart, setCart }: ICartProps) => {
 
   const handleAddCart = (plant: Plants) => {
     setCart([...cart, plant])
-    toast.success('Added to cart successfully!', {
-      position: 'top-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'light',
-      // transition: Bounce,
-    })
+    showSuccessToast(`Added to cart successfully!`)
   }
 
   return (
